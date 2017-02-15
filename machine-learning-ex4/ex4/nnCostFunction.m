@@ -94,6 +94,14 @@ end
 Theta2_grad = Theta2_grad/m;
 Theta1_grad = Theta1_grad/m;
 
+mod1 = [zeros(size(Theta1,1),1),ones(size(Theta1,1),size(Theta1,2)-1)];
+Theta1_grad = Theta1_grad+ mod1 .* (lambda/m*Theta1);
+
+mod2 = [zeros(size(Theta2,1),1),ones(size(Theta2,1),size(Theta2,2)-1)];
+Theta2_grad = Theta2_grad+ mod2 .* (lambda/m*Theta2);
+
+
+
 
 
 

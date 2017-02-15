@@ -85,16 +85,17 @@ J  = J + lambda/2/m*(sum(sum(Theta1(:,2:end) .* Theta1(:,2:end) ))+sum(sum(Theta
 
 for i = 1:m
     d3 = a3(i,:) - Y(i,:);
+    d2 =(d3 * Theta2(:,2:end) ) .* sigmoidGradient(z2(i,:));
     
     Theta2_grad = Theta2_grad + (a2(i,:)' * d3)';
-    
-    d2 =(d3 * Theta2 ) .* sigmoidGradient(z2(i,:));
-    
-    Theta1_grad = Theta1_grad + (X(i,:)')*d2;
+    Theta1_grad = Theta1_grad + ((X(i,:)')*d2)';
     
 end
 Theta2_grad = Theta2_grad/m;
 Theta1_grad = Theta1_grad/m;
+
+mod1 = [zeros(size(Theta1,1),1),ones(size(Theta1,1),size(Theta1))]
+
 
 
 
