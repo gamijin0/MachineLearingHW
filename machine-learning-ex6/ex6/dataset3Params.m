@@ -23,9 +23,26 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+Value_Vec = [0.01,0.03,0.1,0.3,1,3,10,30];
+target = [1,1];
+minMean = 9999;
 
+for i =  1:length(Value_Vec)
+    C = Value_Vec(i);
+    for j = 1:length(Value_Vec)
+        sigma = Value_Vec(j);
+        model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma)); 
+        predictions = svmPredict(model, Xval);
+        Mean = mean(double(predictions ~= yval));
+        if(Mean<minMean)
+            minMean = Mean;
+            target = [i,j];
+        end
+    end
+end
 
-
+C = Value_Vec(target(1));
+sigma = Value_Vec(target(2));
 
 
 
