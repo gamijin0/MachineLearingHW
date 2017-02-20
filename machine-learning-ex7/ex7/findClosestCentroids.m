@@ -23,6 +23,25 @@ idx = zeros(size(X,1), 1);
 
 
 
+for i =1:size(X,1)
+    min_dis_tmp=inf;
+    idx_tmp = 1;
+    for j =1:K
+        d = sum((X(i,:)-centroids(j,:)) .* (X(i,:)-centroids(j,:)));
+        if( d < min_dis_tmp)
+            idx_tmp = j;
+            min_dis_tmp = d;
+        end
+    end
+    idx(i) = idx_tmp;
+end
+
+
+
+
+
+
+
 
 
 

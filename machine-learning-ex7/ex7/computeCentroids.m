@@ -26,10 +26,18 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
+% u_idx = unique(idx);
+% 
+% for i =1:size(u_idx)
+%     X_belong_to_idx_i = X(find( idx,u_idx(i) ),:);
+%     centroids(i,:) = mean(X_belong_to_idx_i);
+% %     centroids(i,:) = sum(X_belong_to_idx_i)/double(size(X_belong_to_idx_i,1));
+% end
 
 
-
-
+for i = 1:K
+    centroids(i,:) = mean(X(find(idx==i),:));
+end
 
 
 
